@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <link rel="stylesheet" href="./css/fonts.css">
     <title>Countdown to September 28th</title>
 
@@ -41,7 +45,9 @@
 
         .container {
             background-color: #F4EDEF;
-            border-radius: 20px;
+            border-radius: 12px;
+            border: 0px solid #fadc91;
+            box-shadow: 0px 0px 5px 1px #c79c23;
             padding: 40px 32px;
             text-align: center;
         }
@@ -49,16 +55,22 @@
             font-size: 1.5em;
             display: block;
         }
+        .green{
+            color: #94d192
+        }
+        .lilach{
+            color: #bf77bb
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container animate__animated animate__fadeInDown">
         <h1>Contagem Regressiva da Revelação</h1>
         <div id="countdown">
-            <div class="time-box"><span id="days">0</span> Days</div>
-            <div class="time-box"><span id="hours">0</span> Hours</div>
-            <div class="time-box"><span id="minutes">0</span> Minutes</div>
-            <div class="time-box"><span id="seconds">0</span> Seconds</div>
+            <div class="time-box green"><span id="days">0</span> Days</div>
+            <div class="time-box lilach"><span id="hours">0</span> Hours</div>
+            <div class="time-box green"><span id="minutes">0</span> Minutes</div>
+            <div class="time-box lilach"><span id="seconds">0</span> Seconds</div>
         </div>
     </div>
 
