@@ -1,103 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-    <link rel="stylesheet" href="./css/fonts.css">
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="./css/fonts.css" />
     <title>Countdown to September 28th</title>
 
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
-            background: rgb(206,233,143);
-            background: linear-gradient(90deg, rgba(206,233,143,1) 0%, rgba(170,198,202,1) 47%, rgba(197,93,224,1) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-        }
-        h1 {
-            font-family: 'Borel', sans-serif;
-            text-shadow: 1px 3px 3px rgb(110 100 10 / 0.6);
-            color: #414141;
-            font-size: 3em;
-        }
-        #countdown {
-            font-size: 2em;
-            color: #ff4500;
-            text-shadow: 1px 1px 2px #aaa;
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f8ff;
+        background: rgb(206, 233, 143);
+        background: linear-gradient(
+          90deg,
+          rgba(206, 233, 143, 1) 0%,
+          rgba(170, 198, 202, 1) 47%,
+          rgba(197, 93, 224, 1) 100%
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+      }
+      h1 {
+        font-family: "Borel", sans-serif;
+        text-shadow: 1px 3px 3px rgb(110 100 10 / 0.6);
+        color: #414141;
+        font-size: 3em;
+      }
+      #countdown {
+        font-size: 2em;
+        color: #ff4500;
+        text-shadow: 1px 1px 2px #aaa;
+      }
+      .time-box {
+        margin: 0 10px;
+        display: inline-block;
+        padding: 10px;
+        font-family: "Delius", sans-serif;
+      }
 
-            
-        }
-        .time-box {
-            margin: 0 10px;
-            display: inline-block;
-            padding: 10px;
-            font-family: 'Delius', sans-serif;
-        }
-
-        .container {
-            background-color: #F4EDEF;
-            border-radius: 12px;
-            border: 0px solid #fadc91;
-            box-shadow: 0px 0px 5px 1px #c79c23;
-            padding: 40px 32px;
-            text-align: center;
-        }
-        .time-box span {
-            font-size: 1.5em;
-            display: block;
-        }
-        .green{
-            color: #94d192
-        }
-        .lilach{
-            color: #bf77bb
-        }
+      .container {
+        background-color: #f4edef;
+        border-radius: 12px;
+        border: 0px solid #fadc91;
+        box-shadow: 0px 0px 5px 1px #c79c23;
+        padding: 40px 32px;
+        text-align: center;
+      }
+      .time-box span {
+        font-size: 1.5em;
+        display: block;
+      }
+      .green {
+        color: #94d192;
+      }
+      .lilach {
+        color: #bf77bb;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container animate__animated animate__fadeInDown">
-        <h1>Contagem Regressiva da Revelação</h1>
-        <div id="countdown">
-            <div class="time-box green"><span id="days">0</span> Days</div>
-            <div class="time-box lilach"><span id="hours">0</span> Hours</div>
-            <div class="time-box green"><span id="minutes">0</span> Minutes</div>
-            <div class="time-box lilach"><span id="seconds">0</span> Seconds</div>
-        </div>
+      <h1>Contagem Regressiva da Revelação</h1>
+      <div id="countdown">
+        <div class="time-box green"><span id="days">0</span> Days</div>
+        <div class="time-box lilach"><span id="hours">0</span> Hours</div>
+        <div class="time-box green"><span id="minutes">0</span> Minutes</div>
+        <div class="time-box lilach"><span id="seconds">0</span> Seconds</div>
+      </div>
     </div>
 
-
     <script>
-        function countdown() {
-            const targetDate = new Date('September 28, 2024 17:00:00 GMT-0300').getTime();
-            const now = new Date().getTime();
-            const timeDifference = targetDate - now;
+      const total = 7000;
+      let reduce = 1000;
+      let hasBegun = false;
+      function countdown() {
+        const finalDate = new Date("September 28, 2024 18:00:00 GMT-0300");
+        const targetDate = finalDate.getTime();
+        const nowDate = new Date();
+        const now = nowDate.getTime();
+        let timeDifference = targetDate - now;
 
-            if (timeDifference >= 0) {
-                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        const compareDate = () => {
+          const seconds = finalDate.getSeconds() === nowDate.getSeconds();
+          const minutes = finalDate.getMinutes() === nowDate.getMinutes();
 
-                document.getElementById('days').innerHTML = days;
-                document.getElementById('hours').innerHTML = hours;
-                document.getElementById('minutes').innerHTML = minutes;
-                document.getElementById('seconds').innerHTML = seconds;
-            } else {
-                document.getElementById('countdown').innerHTML = "The event has started!";
-            }
+          return seconds && minutes;
+        };
+
+        if (timeDifference <= 0 && !compareDate() && !hasBegun) {
+          timeDifference = total - reduce;
+          reduce += 1000;
+          if (reduce === 7000) {
+            hasBegun = true;
+          }
         }
 
-        setInterval(countdown, 1000);
-    </script>
+        if (timeDifference >= 0) {
+          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-</body>
+          document.getElementById("days").innerHTML = days;
+          document.getElementById("hours").innerHTML = hours;
+          document.getElementById("minutes").innerHTML = minutes;
+          document.getElementById("seconds").innerHTML = seconds;
+        } else {
+          window.location = "https://jogo.teterafa.com.br/";
+        }
+      }
+
+      setInterval(countdown, 1000);
+    </script>
+  </body>
 </html>
